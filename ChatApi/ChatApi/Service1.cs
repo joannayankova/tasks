@@ -12,8 +12,11 @@ namespace ChatApi
     {
         public string RecieveMessage(string message)
         {
+            Console.WriteLine("Return: {0}", message);
             return message;
+           
         }
+       
 
    
     }

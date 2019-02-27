@@ -16,13 +16,16 @@ namespace Client
             ServiceClient client = new ServiceClient();
 
             string Message = Console.ReadLine();
+
             var kyr =client.RecieveMessage(Message);
 
-            Console.WriteLine(kyr);
+            //Console.WriteLine(kyr);
+
 
 
             //Step 3: Closing the client gracefully closes the connection and cleans up resources.
             client.Close();
+            Console.ReadLine();
         }
     }
 }

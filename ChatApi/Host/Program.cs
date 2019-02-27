@@ -36,6 +36,10 @@ namespace Host
                 Console.WriteLine();
                 Console.ReadLine();
 
+               
+               
+
+
                 // Close the ServiceHostBase to shutdown the service.
                 selfHost.Close();
             }
