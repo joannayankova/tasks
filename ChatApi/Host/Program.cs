@@ -13,7 +13,6 @@ namespace Host
     {
         static void Main(string[] args)
         {
-            // Step 1 Create a URI to serve as the base address.
             Uri baseAddress = new Uri("http://localhost:8733/Design_Time_Addresses/ChatApi/");
 
             // Step 2 Create a ServiceHost instance
