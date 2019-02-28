@@ -10,50 +10,39 @@ namespace Exercise.Api.Host.Controllers
     [ApiController]
     public class MessageController : ControllerBase
     {
-        [HttpPost]
-        public Message[] Post([FromBody] Message[] message)
+        private static List<Message> messages = new List<Message>();
+
+        [HttpPost, Route("create-message")]
+        public void Post([FromBody] List<Message> messagesFromRequest)
         {
-            //spisuk
-            foreach (var msg in message)
+            foreach (var item in messagesFromRequest)
             {
-                Console.WriteLine(msg.Id + ":" + msg.Sender + ":" + msg.Body);
+                messages.Add(item);
             }
-
-          
         }
 
-        [HttpGet]
-        public void Get([FromBody] Message[] message)
+        [HttpGet, Route("get-all")]
+        public ActionResult<List<Message>> Get()
         {
-            foreach (var msg in message)
-            {
-                msg.ShowDetails();
-            }
-            
+            return messages;
         }
 
-        [HttpGet("{id}")]
-        public void Get(int id,Message[] messages)
+        [HttpGet, Route("get-message")]
+        public ActionResult<Message> Get(string uuid)
         {
-            messages[id].ShowDetails();
+            return messages.FirstOrDefault(x => x.Uuid.Equals(uuid));
         }
 
+        public class MyCustomObject
+        {
+            public List<Message> Messages { get; set; }
+        }
 
         public class Message
         {
-            public int Id { get; set; }
+            public string Uuid { get; set; }
             public string Sender { get; set; }
             public string Body { get; set; }
-
-            public void ShowDetails()
-            {
-                Console.WriteLine(this.Id + this.Sender + this.Body);
-
-            }
-         }
-
-
-
-    
-
+        }
+    }
 }
